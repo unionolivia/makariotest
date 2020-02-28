@@ -27,6 +27,8 @@ class CreateUsersTable extends Migration
             $table->string('company_name')->nullable();
             $table->string('guarantor_name')->nullable();
             $table->text('guarantor_address')->nullable();
+            $table->string('profile_photo')->nullable();
+            $table->string('gender')->nullable();
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->rememberToken();

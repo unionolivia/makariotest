@@ -21,6 +21,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::resource('role', 'Role\IndexController');
 Route::resource('user', 'User\IndexController');
+Route::resource('order', 'Order\IndexController');
 
 });
 

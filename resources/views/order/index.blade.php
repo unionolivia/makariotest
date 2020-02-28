@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Users')
+@section('title', 'Orders')
 @section('content')
 <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
@@ -9,9 +9,9 @@
           <div class="col-md-12 col-sm-6">
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">All Users</h3>
+              <h3 class="card-title">All orders</h3>
               
-              <a href="{{route('user.create')}}" class="btn btn-info">Add a user<i class="fas fa-edit"></i></a>
+              <a href="{{route('order.create')}}" class="btn btn-info">Add an Order</a>
 
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -24,17 +24,17 @@
         {{ session('status') }}
     </div>
 			@endif	 
-                <table id="user" class="table table-bordered table-striped">
+                <table id="order" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                  
                   
                   <th>Full Name</th>
-                                   
-                  <th>Address</th>
-                  <th>Phone Number</th>
-                  <th>Email Address</th>
-                  <th>Role</th>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Qty</th>
+                  <th>Order Amount</th>
+                  <th>Balance</th>
                   <th>Actions</th>
 
                  
@@ -42,26 +42,26 @@
                 </thead>
                 <tbody>
                 
-                 @if(empty($users))
+                 @if(empty($orders))
 									 <tr>
-                      <td>No users</td>
+                      <td>No Orders</td>
                     </tr>                                      
 								@else
-                @foreach($users as $user) 
+                @foreach($orders as $order) 
                
                 <tr>
-                  <td>{{$user->firstname}} {{$user->surname}}</td>                   
-                  <td>{{$user->address}}</td>                                   
-                  <td>{{$user->phone}}</td>
-                   <td>{{$user->email}}</td>
-                  <td>{{$user->role}}</td> 
-                  <td><a href="" data-toggle="modal" data-target="#modal-" class="btn btn-info">update role<i class="fas fa-edit"></i></a>
+                  <td>{{$order->firstname}} {{$order->surname}}</td>                   
+                  <td>{{$order->name}}</td>                                   
+                  <td>{{$order->category}}</td>
+                  <td>{{$order->qty}}</td>
+                   <td>{{$order->total_amount}}</td>
+                  <td>{{$order->amount_paid}}</td> 
+                  <td><a href="" data-toggle="modal" data-target="#modal-" class="btn btn-info">update<i class="fas fa-edit"></i></a>
                         
                          {{csrf_field()}}
                          {{method_field('DELETE')}}
                  
-                     <a href="staff.html" class="btn btn-success">update user<i class="fas fa-eye"></i></a>
-                        <a href="#" class="btn btn-danger">Delete user<i class="fas fa-trash"></i></a>
+                        <a href="#" class="btn btn-danger">Delete<i class="fas fa-trash"></i></a>
 
                       </div></td>                 
                 </tr>
@@ -72,16 +72,13 @@
                 </tbody>
                 <tfoot>
                 <tr>
-                
-                  
-                  <th>Full Name</th>
-                                
-                  <th>Address</th>
-                  <th>Phone Number</th>
-                  <th>Email Address</th>
-                  <th>Role</th>
+                 <th>Full Name</th>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Qty</th>
+                  <th>Order Amount</th>
+                  <th>Balance</th>
                   <th>Actions</th>
-
                    </tr>
                 </tfoot>
               </table>
@@ -126,7 +123,7 @@
 @push('scripts')
 <script>
  $(function() {
-      $('#user').DataTable({
+      $('#order').DataTable({
       "paging": true,
       "lengthChange": true,
       "searching": true,

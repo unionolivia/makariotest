@@ -17,7 +17,7 @@
             </div>
             <div class="card-body">
              
-                 <label for="inputName">User Information</label>
+                 <label for="inputName">General Information</label>
          <form method="POST" class="form-horizontal" action="{{ route('user.store') }}" enctype="multipart/form-data">
                {{ csrf_field() }}
             <div class="row">
@@ -45,13 +45,8 @@
                 </div>
                 
                  <div class="form-group">
-                    <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="profile_photo" name="profile_photo" >
-                        <label class="custom-file-label" for="profile_photo">Choose user photo</label>
-                      </div>
-                      
-                    </div>
+                 <input type="file" class="custom-file-" id="profile_photo" name="profile_photo" >
+                    
                   </div>
                                 
                  
@@ -83,12 +78,44 @@
               </div>
               <!-- /.col -->             
             </div>
+            
+            <label for="inputName">Staff Information</label>
+            <div class="row">
+                <div class="col-md-6">
+                <div class="form-group">
+                  <input type="text" id="guarantor_name" name="guarantor_name" class="form-control" placeholder="Guarantor Name">
+                </div>  
+                 </div>
+                 <!-- end col-6 -->
+                 
+                 <div class="col-md-6">
+                 		<div class="form-group">   
+                  <input type="text" name="guarantor_address" id="guarantor_address" class="form-control" placeholder="Guarantor Address">
+                </div>
+                 </div>
+              </div>
+              <!-- end of Column -->
+            
+            <label for="inputName">Customer Information</label>
+            <div class="row">
+                <div class="col-md-6">
+                <div class="form-group">
+                  <input type="text" id="company_name" name="company_name" class="form-control" placeholder="Company Name">
+                </div>  
+                 </div>
+                 <!-- end col-6 -->
+                 
+                 <div class="col-md-6">
+                 		<div class="form-group">   
+                  <input type="text" name="company_address" id="company_address" class="form-control" placeholder="Company Address">
+                </div>
+                 </div>
+              </div>
+              <!-- end of Column -->
              
             <label for="inputName">User Account Settings</label>
             <div class="row">
               <div class="col-md-6">
-                              
-
                               
                 <div class="input-group mb-3">
               <input type="text" class="form-control" placeholder="Username" name="username" id="username">

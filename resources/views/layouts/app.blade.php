@@ -7,15 +7,20 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title', 'Welcome to MakarioCRM') </title>    
 
     <!-- Scripts -->
-   <!-- <script src="{{ asset('js/app.js') }}" defer></script>-->
+   <!--<script src="{{ asset('js/app.js') }}" defer></script>-->
     
+		
+     
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker3.min.css') }}">
+   <script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
+   
     <!-- To include common scripts for particular Controller action -->
- @if (in_array(substr(Route::currentRouteAction(), strpos(Route::currentRouteAction(), 'Controllers')+12), ['Role\IndexController@index', 'User\IndexController@index']))
+ @if (in_array(substr(Route::currentRouteAction(), strpos(Route::currentRouteAction(), 'Controllers')+12), ['Role\IndexController@index', 'User\IndexController@index', 'Order\IndexController@index']))
     <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
    <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
    <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap4.min.css') }}">
@@ -67,11 +72,11 @@
                          <a class="nav-link" href="{{ route('user.index') }}">Users</a>
                         </li>
                         <li>
-                         <a class="nav-link" href="">orders</a>
+                         <a class="nav-link" href="{{ route('order.index') }}">orders</a>
                         </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                  Hi!  {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -86,6 +91,16 @@
                                     </form>
                                 </div>
                             </li>
+                             <li>
+                         <a class="nav-link"  href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                        </li>
                         @endguest
                     </ul>
                 </div>
