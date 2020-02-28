@@ -158,6 +158,7 @@
   //Date range picker
     $('#due_date').datepicker({
        autoclose: true,
+       todayHighlight: true,
        format: 'dd-mm-yyyy'
     });
 });

@@ -99,7 +99,7 @@ class IndexController extends Controller
         	
         	Mail::send('emails.myorder', $data, function($message) use ($customer){
         	    $message
-        	    ->from('union.ojeaga@infotechplanet.com','Makarioworks')
+        	    ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))
         	    ->to($customer->email, '')
         	    ->subject('Order Purchase from Makario');
         	});

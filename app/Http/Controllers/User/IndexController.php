@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Role;
 use App\User;
+use URL;
 
 class IndexController extends Controller
 {
@@ -83,7 +84,7 @@ class IndexController extends Controller
         	
         	$role = Role::where('id', '=', $request->role)->firstOrFail();
           
-          if($user->attachRole($role->id)){
+          $user->attachRole($role->id);
             
             $data = [
         	   'name' => $user->firstname. ''. $user->surname,
@@ -94,12 +95,11 @@ class IndexController extends Controller
         	
         	Mail::send('emails.welcome', $data, function($message) use ($user){
         	    $message
-        	    ->from('union.ojeaga@infotechplanet.com','Makarioworks')
+        	    ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))
         	    ->to($user->email, '')
         	    ->subject('Welcome to Makarioworks');
         	});
           
-          }
           
           return redirect()->route('user.index')->with('status', $request->firstname.' created as user');
     }
