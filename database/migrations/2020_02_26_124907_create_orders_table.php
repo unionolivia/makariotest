@@ -20,6 +20,7 @@ class CreateOrdersTable extends Migration
             $table->string('name')->nullable();
             $table->string('category')->nullable();
             $table->string('status')->nullable();
+            $table->bigInteger('qty')->nullable();
             $table->string('comments')->nullable();
             $table->string('due_date')->nullable();
             $table->float('total_amount', 8, 2)->nullable();
