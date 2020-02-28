@@ -23,9 +23,7 @@ Route::group(['middleware' =>[ 'auth', 'role:admin']], function () {
 Route::resource('role', 'Role\IndexController');
 Route::resource('user', 'User\IndexController');
 Route::resource('order', 'Order\IndexController');
-
 });
-
 Route::group(['middleware' => ['auth', 'role:staff']], function () {
 		Route::resource('order', 'Order\IndexController');
 });
